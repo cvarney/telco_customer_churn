@@ -1,5 +1,13 @@
-# telco_customer_churn
+**Telco Customer Churn Project**
 
-## header 2
+**Author:** Christopher Varney
 
-### Header 3
+# Introduction
+
+# Dataset Description
+
+# Methodology
+
+# Results & Discussion
+
+# Conclusion
