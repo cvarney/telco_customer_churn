@@ -68,8 +68,13 @@ In order to gain a basic understanding of the importance of each categorical fea
 Here we see that the `Contract`, `OnlineSecurity`, `TechSupport`, `InternetService`, `OnlineBackup`, `PaymentMethod`, and `DeviceProtection` are likely to be relevant features in our model.
 
 # Methodology
-To analyze this data set, we will consider models for binary classification: Perceptron, LogisticRegresion, Support Vector Machines (SVM), $k$-Nearest Neighbors (KNN), and Random Forest. 
+To analyze this data set, we will consider popular models for binary classification covered in this course: Perceptron, LogisticRegresion, Support Vector Machines (SVM), $k$-Nearest Neighbors (KNN), and Random Forest. 
 
+* The Perceptron learning rule is based on the MCP neuron model and is guaranteed to converge if the data is linearly separable. This approach minimizes misclassification errors.However, the main flaw with this algorithm is that it will never converge if the classes are not perfectly separable.
+* The logistic regression approach models the probability of an outcome being a certain value. It is a widely used model that is best applied for linearly separable classes and predicts a binary outcome.
+* The SVM algorithm maximizes the margin between the decision boundary and the nearest training examples, this leads to lower generalization errors.
+* The KNN method is a nonparametric model that memorizes the training set and makes no assumptions about the dataset, however it is a computationally expensive approach. For every item we wish to classify, it finds the k-nearest neighbors and determines the class label based on a majority of the neighbors.
+* Random forest improves the accuracy compared to an individual decision tree by generating many trees and combining them. This reduces overfitting with increased computational costs.
 
 ## Model Comparison
 To compare the models, I ran a 5-fold cross-validation on the default settings for each model. Those results are shown in the table below:
@@ -103,17 +108,30 @@ In order to evaluate our model on the test data, I calculated the accuracy, f1 s
 |---------:|---------:|----------:|-------:|
 | 0.792    |  0.575   | 0.683     | 0.497  |
 
-Here we note that the accuracy of the model on the test set is 79.2%, which is lower than the accuracy on the training set 80.9%. This is 
-
-Additionally, I computed the confusion matrix, which is shown below:
+Here we note that the accuracy of the model on the test set is 79.2%, which is lower than the accuracy on the training set 80.9%. The accuracies are similar, so we note that the model performs similarly on unseen data as it does with the known data. Additionally, I computed the confusion matrix, which is shown below:
 
 ![Confusion Matrix](https://github.com/cvarney/telco_customer_churn/blob/main/CM.png?raw=true)
 
-Overall the model had 1144 true negatives and 248 true positives, for a total of 1392 correct classifications with 366 misclassifications (115 false positives and 251 false negatives). 
+Overall the model had 1144 true negatives and 248 true positives, for a total of 1392 correct classifications with 366 misclassifications (115 false positives and 251 false negatives). Overall, we see that the model predicts Churn 20.65% of the time, and the actual Churn rate is 28.38%. Our model is underpredicting the Churn rate on unseen data. This is likely due to overfitting in our model.
 
-
-Feature Importance
+Finally, we examine the absolute value of the coefficients of the logistic regression to determine the features most important for the classification model:
 
 ![Importance](https://github.com/cvarney/telco_customer_churn/blob/main/Importance.png?raw=true)
 
-# Conclusion
+Here we see that the most important features are: 
+
+| Feature | Importance |
+|:-------:|:----------:|
+| tenure  | 1.704854 |
+| Contract_Month-to-month | 0.681454 |
+| Contract_Two year | 0.668443 |
+| InternetService_Fiber optic | 0.450459 |
+| InternetService_DSL | 0.365121 |
+| PaymentMethod_Electronic check | 0.298266 |
+| TotalCharges | 0.254261 |
+| PaperlessBilling | 0.253542 |
+| OnlineSecurity_No | 0.233404 |
+| TechSupport_No | 0.233095 |
+| SeniorCitizen | 0.229972 |
+
+We note that many of these features were previously identified as being connected to high Churn rates: month-to-month contracts, fiber optic internet, paperless billing, no online security, no tech support, and senior citizen. I also find it interesting that a feature associated with very low Churn rates has high importance in the model: two year contracts. This feature is clearly an extremly important determining factor in retaining a customer and should be prioritized in all customer retention programs.
