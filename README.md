@@ -47,8 +47,54 @@ In the Figure below, I show a histogram of the Churn rate for each feature belon
 
 ## Mutual Information Score for Feature Importance
 ![Mutual Information Score](https://github.com/cvarney/telco_customer_churn/blob/main/MutualInfo.png?raw=true)
+
 # Methodology
+To analyze this data set, we will consider models for binary classification: Perceptron, LogisticRegresion, Support Vector Machines (SVM), $k$-Nearest Neighbors (KNN), and Random Forest. 
+
+
+## Model Comparison
+To compare the models, I ran a 5-fold cross-validation on the default settings for each model. Those results are shown in the table below:
+
+|  Model     | Accuracy | F1 Score | Precision | Recall |
+|:-----------|---------:|---------:|----------:|-------:|
+| Perceptron | 0.7196 |  0.4161 | 0.5586 | 0.5029 |
+| LogisticRegression | 0.8030 | 0.5843 | 0.6475 | 0.5328 |
+| SVM | 0.7994 | 0.5534 | 0.6573 | 0.4788 |
+| KNN | 0.7622 | 0.5275 | 0.5459 | 0.5109 |
+| Random Forest | 0.7850 | 0.5274 | 0.6162 | 0.4620 |
+
+From this cross validation, we see that the `LogisticRegression` model has the best classification accuracy on the training set. 
+
+## Hyperparameter Tuning
+Hyperparameters were tuned by varying the inverse regularization strength $C$ and the solver with the following parameter options:
+```
+grid_parameters = {
+    'C': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0, 5, 10.0, 50.0, 100.0, 500.0, 1000.0],
+    'solver': ['lbfgs', 'newton-cg', 'liblinear', 'sag'],
+    'max_iter': [1000, 10000]
+}
+```
+
+I utilized 10-fold `GridSearchCV` and determined the best parameters to be the `liblinear` solver and $C=5$. Hyperparameter tuning improved the performance of the model on the training set to 80.9%.
 
 # Results & Discussion
+In order to evaluate our model on the test data, I calculated the accuracy, f1 score, precision, and recall:
+
+| Accuracy | F1 Score | Precision | Recall |
+|---------:|---------:|----------:|-------:|
+| 0.792    |  0.575   | 0.683     | 0.497  |
+
+Here we note that the accuracy of the model on the test set is 79.2%, which is lower than the accuracy on the training set 80.9%. This is 
+
+Additionally, I computed the confusion matrix, which is shown below:
+
+![Confusion Matrix](https://github.com/cvarney/telco_customer_churn/blob/main/CM.png?raw=true)
+
+Overall the model had 1144 true negatives and 248 true positives, for a total of 1392 correct classifications with 366 misclassifications (115 false positives and 251 false negatives). 
+
+
+Feature Importance
+
+![Importance](https://github.com/cvarney/telco_customer_churn/blob/main/Importance.png?raw=true)
 
 # Conclusion
