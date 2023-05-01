@@ -11,7 +11,7 @@
 Numerical Properties
 
 In the Figure below we examine the distributions of our numerical data:
-![alt text](https://github.com/cvarney/telco_customer_churn/blob/main/Numerical.png?raw=true)
+![Numerical Data Distributions](https://github.com/cvarney/telco_customer_churn/blob/main/Numerical.png?raw=true)
 
 In the Table below we see the count, mean, and standard deviation for numerical categories provided a customer has left the company: `tenure`, `MonthlyCharges`, `TotalCharges` and `NumServices`.
 
@@ -34,19 +34,19 @@ Here we see that the average tenure is 17.98 months for a customer that has left
 
 ## Demographic Features
 In the Figure below, I show a histogram of features and the Churn rate for each feature belonging to Demographics. Gender appears to have no impact on Churn rate, but the Churn rate is higher if the customer does not have a `Partner` or `Dependents`. Additionaly, the Churn rate is higher if the customer is a `SeniorCitizen`.
-![alt text](https://github.com/cvarney/telco_customer_churn/blob/main/Demographic.png?raw=true)
+![Demographic Category Churn](https://github.com/cvarney/telco_customer_churn/blob/main/Demographic.png?raw=true)
 
 ## Account Features
 In the Figure below, I show a histogram of features including the Churn rate. For `tenure`, we see that the Churn rate is high if the tenure is short. Additionally, customers who select `PaperlessBilling`, `Month-to-Month` contracts, and `Electronic check` as `PaymentMethod` have higher Churn rates.
 
-![alt text](https://github.com/cvarney/telco_customer_churn/blob/main/Account.png?raw=true)
+![Account Category Churn](https://github.com/cvarney/telco_customer_churn/blob/main/Account.png?raw=true)
 
 ## Service Features
 In the Figure below, I show a histogram of the Churn rate for each feature belonging to Service. Customers who subscribe to `PhoneService` and `Fiber optic` `InternetService` are more likely to Churn. Customers who do not subscribe to `OnlineBaackup`, `OnlineSecurity`, or `TechSupport` have higher Churn rates. `StreamingTV` and `StreamingMovies` have similar Churn rates. In terms of number of services, customers who subscribe to 1, 7, or 8 services have a lower Churn rate.
-![alt text](https://github.com/cvarney/telco_customer_churn/blob/main/Services.png?raw=true)
+![Service Category Churn](https://github.com/cvarney/telco_customer_churn/blob/main/Services.png?raw=true)
 
 ## Mutual Information Score for Feature Importance
-![alt text](https://github.com/cvarney/telco_customer_churn/blob/main/MutualInfo.png?raw=true)
+![Mutual Information Score](https://github.com/cvarney/telco_customer_churn/blob/main/MutualInfo.png?raw=true)
 # Methodology
 
 # Results & Discussion
