@@ -68,6 +68,10 @@ In order to gain a basic understanding of the importance of each categorical fea
 Here we see that the `Contract`, `OnlineSecurity`, `TechSupport`, `InternetService`, `OnlineBackup`, `PaymentMethod`, and `DeviceProtection` are likely to be relevant features in our model.
 
 # Methodology
+## Feature Engineering
+Categorical data was transformed into numerical format using label encoding or one-hot encoding (for categorical data with multiple values). Data was split with a 75%/25% train/test ratio. Next, numerical data was transformed using `MinMaxScaler` to put it onto a $[0,1]$ interval. The transformation was established on the train data and used to transform the test data.
+
+## Models
 To analyze this data set, we will consider popular models for binary classification covered in this course: Perceptron, LogisticRegresion, Support Vector Machines (SVM), $k$-Nearest Neighbors (KNN), and Random Forest. 
 
 * The Perceptron learning rule is based on the MCP neuron model and is guaranteed to converge if the data is linearly separable. This approach minimizes misclassification errors.However, the main flaw with this algorithm is that it will never converge if the classes are not perfectly separable.
@@ -135,3 +139,8 @@ Here we see that the most important features are:
 | SeniorCitizen | 0.229972 |
 
 We note that many of these features were previously identified as being connected to high Churn rates: month-to-month contracts, fiber optic internet, paperless billing, no online security, no tech support, and senior citizen. I also find it interesting that a feature associated with very low Churn rates has high importance in the model: two year contracts. This feature is clearly an extremly important determining factor in retaining a customer and should be prioritized in all customer retention programs.
+
+# Conclusions
+In this machine learning project, I have evaluated the Telco customer Churn dataset. The data was cleaned and exploratory analysis was performed to identify important features. Categorical data was encoded into numerical data using label encoding or one hot encoding. Numerical data was transformed using the `MinMaxScaler`. Next, I employed five machine learning algorithms with default parameters and determined that LogisticRegression resulted in the highest accuracy, although SVM and RandomForest were close in performance. I tuned the hyperparameters the LogisticRegression, improving the accuracy on the training set to 80.9%. However, overfitting in the model resulted in the model underpredicting the Churn rate on test data. 
+
+Overall, while the model could be improved through the use of dimensional reduction methods or by comparing with additional classification algorithms, it did identify important factors for customer retention that can be used to build a customer retention program for our fictional telecommunciations company.
